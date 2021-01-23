@@ -13,6 +13,8 @@ class ProfileController extends Controller
         return view('admin.profile.create');
         
     }
+    
+    
     public function create(Request $request)
    {
        $this->validate($request, Profile::$rules);
@@ -25,9 +27,12 @@ class ProfileController extends Controller
        $profile->fill($form);
        $profile->save();
        
-        return redirect('admin/profile/create');
+        return redirect('admin/profile/');
         
     }
+   
+   
+    
     public function edit(Request $request){
          $profile = Profile::find($request->id);
       if (empty($profile)){
@@ -36,22 +41,40 @@ class ProfileController extends Controller
         
     }
     
+    
+    
     public function update(Request $request){
         
     $this->validate($request, Profile::$rules);
       
-      $profile= Profile::find($request->id);
+      $profile = Profile::find($request->id);
       
       $profile_form = $request->all();
        unset($profile_form['_token']);
       
       $profile->fill($profile_form)->save();
       
+
+      
       return redirect('admin/profile');
-        
+      
     }
     
+    
+    
     public function index(Request $request){
-        return view('admin.profile.index', ['profiles' => $profile ]);
+        $profile= Profile::get();
+    
+        return view('admin.profile.index', ['posts' => $profile ]);
     }
+    
+    
+     public function delete(Request $request)
+  {
+      // 該当するNews Modelを取得
+      $news = Profile::find($request->id);
+      // 削除する
+      $profile->delete();
+      return redirect('admin/profile/');
+  }  
 }

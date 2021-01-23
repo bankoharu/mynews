@@ -37,7 +37,7 @@ class NewsController extends Controller
        $news->fill($form);
        $news->save();
        
-       return redirect('admin/news/create');
+       return redirect('admin/news/');
    }
    
    public function index(Request $request){
@@ -71,7 +71,7 @@ class NewsController extends Controller
           $path =$request->file('image')->store('public/image');
           $news_form['image_path']=basename($path);
       }else{
-          $news_form['image_path']=$news>image_path;
+          $news_form['image_path'] = $news->image_path;
       }
       
       
@@ -88,4 +88,13 @@ class NewsController extends Controller
       
       return redirect('admin/news/');
   }
+  
+   public function delete(Request $request)
+  {
+      // 該当するNews Modelを取得
+      $news = News::find($request->id);
+      // 削除する
+      $news->delete();
+      return redirect('admin/news/');
+  } 
 }
