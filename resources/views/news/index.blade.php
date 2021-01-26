@@ -26,7 +26,7 @@
                 </div>
             </div>
         @endif
-        <hr color="#c0c0c0">
+        <hr color=#c0c0c0>
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
                 @foreach($posts as $post)
@@ -45,7 +45,7 @@
                             </div>
                             <div class="image col-md-6 text-right mt-4">
                                 @if ($post->image_path)
-                                    <img src="{{ asset('storage/image/' . $post->image_path) }}">
+                                    <img src="{{ asset('storage/image/' .$post->image_path) }}">
                                 @endif
                             </div>
                         </div>
