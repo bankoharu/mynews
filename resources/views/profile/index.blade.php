@@ -1,6 +1,11 @@
-
- <hr color=#c0c0c0>
+ @extends('layouts.front')
+ 
+ @section('content')
+ <div class="container">
+      <hr color="#c0c0c0">
+ 
         <div class="row">
+             
             <div class="posts col-md-8 mx-auto mt-3">
                 @foreach($profiles as $profile)
                     <div class="post">
@@ -22,11 +27,12 @@
                                     自己紹介：{{ str_limit($profile->introduction, 300) }}
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                     <hr color="#c0c0c0">
                 @endforeach
             </div>
         </div>
-        
+ </div>
+    @endsection
